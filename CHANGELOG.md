@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- fix: samples import (v0.1.1)
+
 ## 0.1.0
 - Initial public release
 - iOS: Core Haptics support

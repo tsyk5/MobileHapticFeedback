@@ -25,7 +25,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 To install a specific version, append a tag:
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git#v0.1.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.1.1
 ```
 
 
