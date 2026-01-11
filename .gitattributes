@@ -1,0 +1,44 @@
+# normalize line endings
+* text=auto eol=lf
+
+# treat code as text for diff
+*.cs text diff=csharp
+*.shader text
+*.cginc text
+*.h text
+*.m text
+*.mm text
+*.swift text
+*.kt text
+*.gradle text
+*.json text
+*.xml text
+*.yml text
+*.yaml text
+*.txt text
+*.md text
+*.asmdef text
+*.rsp text
+*.pbxproj text
+
+# Unity YAML assets (scene/prefab/etc) are still text
+*.unity text
+*.prefab text
+*.mat text
+*.anim text
+*.controller text
+
+# binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.psd binary
+*.ttf binary
+*.otf binary
+*.mp4 binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.a binary
+*.aar binary
+*.framework binary

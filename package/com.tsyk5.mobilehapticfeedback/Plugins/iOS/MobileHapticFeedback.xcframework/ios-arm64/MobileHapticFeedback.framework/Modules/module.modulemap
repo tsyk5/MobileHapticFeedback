@@ -1,0 +1,6 @@
+framework module MobileHapticFeedback {
+  umbrella header "MobileHapticFeedback.h"
+  export *
+
+  module * { export * }
+}

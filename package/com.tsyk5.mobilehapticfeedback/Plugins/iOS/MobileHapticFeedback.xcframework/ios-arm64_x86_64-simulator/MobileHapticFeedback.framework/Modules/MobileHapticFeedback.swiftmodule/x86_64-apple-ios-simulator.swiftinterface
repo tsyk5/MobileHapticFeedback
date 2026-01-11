@@ -1,0 +1,25 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-ios18.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name MobileHapticFeedback
+import CoreHaptics
+import Foundation
+@_exported import MobileHapticFeedback
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import os.log
+import os
+@_inheritsConvenienceInitializers @objc final public class MobileHapticFeedback : ObjectiveC.NSObject {
+  @objc public static func supportsCoreHaptics() -> Swift.Bool
+  @objc public static func prepareCoreHaptics()
+  @objc public static func stopCoreHaptics()
+  @objc public static func playCoreImpact(intensity: Swift.Float, sharpness: Swift.Float, durationSec: Swift.Double)
+  @objc public static func playCorePattern(durationsSec: [Foundation.NSNumber], amplitudes: [Foundation.NSNumber])
+  @objc public static func playUIKitImpact(style: Swift.Int)
+  @objc public static func playUIKitSelection()
+  @objc public static func playUIKitNotification(type: Swift.Int)
+  @objc override dynamic public init()
+  @objc deinit
+}

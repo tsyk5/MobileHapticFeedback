@@ -1,0 +1,38 @@
+# --- Unity-generated ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Unity editor personal settings (layouts, preferences)
+UserSettings/
+*.dwlt
+
+# Crash Reports
+SysCrashReports/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE / editor junk
+*.csproj
+*.sln
+*.user
+*.vs/
+.idea/
+.vscode/
+
+# Android build cache / signing
+.gradle/
+**/gradle.properties
+*.keystore
+*.jks
+
+# Xcode per-user junk
+xcuserdata/
+DerivedData/
+*.xcuserstate

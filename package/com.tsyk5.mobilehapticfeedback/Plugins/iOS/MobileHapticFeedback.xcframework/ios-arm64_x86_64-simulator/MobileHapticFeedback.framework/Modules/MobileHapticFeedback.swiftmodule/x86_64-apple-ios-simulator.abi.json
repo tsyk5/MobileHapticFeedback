@@ -1,0 +1,425 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "MobileHapticFeedback",
+    "printedName": "MobileHapticFeedback",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MobileHapticFeedback"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreHaptics",
+        "printedName": "CoreHaptics",
+        "declKind": "Import",
+        "moduleName": "MobileHapticFeedback"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "MobileHapticFeedback"
+      },
+      {
+        "kind": "Import",
+        "name": "os.log",
+        "printedName": "os.log",
+        "declKind": "Import",
+        "moduleName": "MobileHapticFeedback"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "MobileHapticFeedback",
+        "printedName": "MobileHapticFeedback",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "supportsCoreHaptics",
+            "printedName": "supportsCoreHaptics()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)supportsCoreHaptics",
+            "mangledName": "$s20MobileHapticFeedbackAAC19supportsCoreHapticsSbyFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "prepareCoreHaptics",
+            "printedName": "prepareCoreHaptics()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)prepareCoreHaptics",
+            "mangledName": "$s20MobileHapticFeedbackAAC18prepareCoreHapticsyyFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "stopCoreHaptics",
+            "printedName": "stopCoreHaptics()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)stopCoreHaptics",
+            "mangledName": "$s20MobileHapticFeedbackAAC15stopCoreHapticsyyFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "playCoreImpact",
+            "printedName": "playCoreImpact(intensity:sharpness:durationSec:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Double",
+                "printedName": "Swift.Double",
+                "usr": "s:Sd"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playCoreImpactWithIntensity:sharpness:durationSec:",
+            "mangledName": "$s20MobileHapticFeedbackAAC14playCoreImpact9intensity9sharpness11durationSecySf_SfSdtFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "objc_name": "playCoreImpactWithIntensity:sharpness:durationSec:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "playCorePattern",
+            "printedName": "playCorePattern(durationsSec:amplitudes:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Foundation.NSNumber]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Foundation.NSNumber]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playCorePatternWithDurationsSec:amplitudes:",
+            "mangledName": "$s20MobileHapticFeedbackAAC15playCorePattern12durationsSec10amplitudesySaySo8NSNumberCG_AHtFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "objc_name": "playCorePatternWithDurationsSec:amplitudes:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "playUIKitImpact",
+            "printedName": "playUIKitImpact(style:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playUIKitImpactWithStyle:",
+            "mangledName": "$s20MobileHapticFeedbackAAC15playUIKitImpact5styleySi_tFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "objc_name": "playUIKitImpactWithStyle:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "playUIKitSelection",
+            "printedName": "playUIKitSelection()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playUIKitSelection",
+            "mangledName": "$s20MobileHapticFeedbackAAC18playUIKitSelectionyyFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "playUIKitNotification",
+            "printedName": "playUIKitNotification(type:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playUIKitNotificationWithType:",
+            "mangledName": "$s20MobileHapticFeedbackAAC21playUIKitNotification4typeySi_tFZ",
+            "moduleName": "MobileHapticFeedback",
+            "static": true,
+            "objc_name": "playUIKitNotificationWithType:",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MobileHapticFeedback",
+                "printedName": "MobileHapticFeedback.MobileHapticFeedback",
+                "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(im)init",
+            "mangledName": "$s20MobileHapticFeedbackAACABycfc",
+            "moduleName": "MobileHapticFeedback",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback",
+        "mangledName": "$s20MobileHapticFeedbackAAC",
+        "moduleName": "MobileHapticFeedback",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
+      "kind": "StringLiteral",
+      "offset": 170,
+      "length": 32,
+      "value": "\"com.tsyk5.mobilehapticfeedback\""
+    },
+    {
+      "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
+      "kind": "StringLiteral",
+      "offset": 214,
+      "length": 9,
+      "value": "\"Haptics\""
+    },
+    {
+      "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
+      "kind": "Dictionary",
+      "offset": 706,
+      "length": 3,
+      "value": "[]"
+    }
+  ]
+}
