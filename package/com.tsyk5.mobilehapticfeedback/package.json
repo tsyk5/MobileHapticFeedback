@@ -1,0 +1,30 @@
+{
+  "name": "com.tsyk5.mobilehapticfeedback",
+  "version": "0.1.0",
+  "displayName": "MobileHapticFeedback",
+  "description": "Cross-platform mobile haptics plugin for Unity (iOS / Android).",
+  "unity": "6000.0",
+  "author": {
+    "name": "tsyk5",
+    "url": "https://github.com/tsyk5"
+  },
+  "keywords": [
+    "haptics",
+    "vibration",
+    "ios",
+    "android",
+    "corehaptics",
+    "uikit"
+  ],
+  "documentationUrl": "https://github.com/tsyk5/MobileHapticFeedback",
+  "changelogUrl": "https://github.com/tsyk5/MobileHapticFeedback/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/tsyk5/MobileHapticFeedback/blob/main/LICENSE",
+  "samples": [
+    {
+      "displayName": "Sample01",
+      "description": "Demo scene for impact + pattern",
+      "path": "Samples~/Sample01"
+    }
+  ]
+}
+
