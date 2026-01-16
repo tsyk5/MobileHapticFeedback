@@ -161,52 +161,6 @@ Human Interface Guidelines:
 Apple – Human Interface Guidelines / Playing Haptics
 </a>
 
-
-### Light
-<img src="images/uikit-light.png" width="520" />
-
-Indicates a collision between small or lightweight UI objects.
-
-### Medium
-<img src="images/uikit-medium.png" width="520" />
-
-Indicates a collision between medium-sized or medium-weight UI objects.
-
-### Heavy
-<img src="images/uikit-heavy.png" width="520" />
-
-Indicates a collision between large or heavyweight UI objects.
-
-### Soft
-<img src="images/uikit-soft.png" width="520" />
-
-Indicates a collision between soft or flexible UI objects.
-
-### Rigid
-<img src="images/uikit-rigid.png" width="520" />
-
-Indicates a collision between hard or inflexible UI objects.
-
-### Success
-<img src="images/uikit-success.png" width="520" />
-
-Indicates that a task or action has completed.
-
-### Warning
-<img src="images/uikit-warning.png" width="520" />
-
-Indicates that a task or action has produced a warning of some kind.
-
-### Error
-<img src="images/uikit-error.png" width="520" />
-
-Indicates that an error has occurred.
-
-### Selection
-<img src="images/uikit-selection.png" width="520" />
-
-Indicates that a UI element’s values are changing.
-
 ## License
 
 MIT

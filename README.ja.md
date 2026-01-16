@@ -3,12 +3,9 @@
 **MobileHapticFeedback** は、Unity 向けの  
 **クロスプラットフォーム・ハプティックフィードバックライブラリ**です。
 
-iOS（Core Haptics / UIKit）と Android（VibrationEffect）を対象に、  
-統一された API でハプティック表現を扱うことができます。
+iOS（Core Haptics / UIKit）と Android（VibrationEffect）を対象に、  統一された API でハプティック表現を扱うことができます。
 
-UIKit スタイルの簡易フィードバックから、  
-パラメータ指定のワンショットインパクト、  
-波形ベースのパターン再生までをサポートしています。
+UIKit スタイルの簡易フィードバックから、  パラメータ指定のワンショットインパクト、  波形ベースのパターン再生までをサポートしています。
 
 ## 特徴
 
@@ -19,7 +16,7 @@ UIKit スタイルの簡易フィードバックから、
   - VibrationEffect ベースのハプティック（API 26+）
 - **Unity**
   - プラットフォーム共通の統一 API
-  - ハプティックが無効な場合でも安全に no-op 動作
+  - ハプティックが無効な場合でも安全に動作
 
 > **⚠️ 補足（Android）**  
 > UIKit スタイルおよび Core Haptics 風 API は、  
@@ -123,16 +120,12 @@ Sample01 シーンでは、以下のハプティックパターンを確認で�
 
 すべてのパターンは、再生途中でも **「Stop」** で中断できます。
 
----
-
 ### SOS
 
 <img src="images/pattern-sos.png" width="520" />
 
 モールス信号の **SOS（… --- …）** をハプティックで表現しています。  
 短いパルス（dit）と長いパルス（dah）を組み合わせた、認識しやすいパターンです。
-
----
 
 ### Heartbeat
 
@@ -141,8 +134,6 @@ Sample01 シーンでは、以下のハプティックパターンを確認で�
 人間の **心臓の鼓動** をイメージしたリズミカルなパターンです。  
 ダブルパルスと休止により、生体的なリズム感を表現します。
 
----
-
 ### StepUp
 
 <img src="images/pattern-stepup.png" width="520" />
@@ -150,77 +141,17 @@ Sample01 シーンでは、以下のハプティックパターンを確認で�
 強度が徐々に上がっていくパターンです。  
 盛り上がり、進行、強調表現などに向いています。
 
----
-
 ### ⭐️ UIKit 風 API
 
 <img src="images/unity-uikit.png" width="520" />
 
-UIKit スタイルのハプティックは、Apple が定義している **システム標準の挙動** に準拠します。 
+UIKit スタイルのハプティックは、Apple が定義している **システム標準の挙動** に準拠しています。 
  
 公式の設計意図や図は、以下のドキュメントを参照してください：
 
 <a href="https://developer.apple.com/jp/design/human-interface-guidelines/playing-haptics">
 Apple – Human Interface Guidelines / Playing Haptics
 </a>
-
----
-
-## UIKit – Impact Styles
-
-### Light
-
-<img src="images/uikit-light.png" width="520" />
-
-小さい/軽いUIオブジェクト同士の衝突を知らせます。
-
-### Medium
-
-<img src="images/uikit-medium.png" width="520" />
-
-中くらいのサイズ/重さのUIオブジェクト同士の衝突を知らせます。
-
-### Heavy
-
-<img src="images/uikit-heavy.png" width="520" />
-
-大きい/重いUIオブジェクト同士の衝突を知らせます。
-
-### Soft
-
-<img src="images/uikit-soft.png" width="520" />
-
-柔らかい/弾力性のあるUIオブジェクト同士の衝突を知らせます。
-
-### Rigid
-
-<img src="images/uikit-rigid.png" width="520" />
-
-硬い/弾力性のないUIオブジェクト同士の衝突を知らせます。
-
-### Success
-
-<img src="images/uikit-success.png" width="520" />
-
-タスクやアクションが完了したことを知らせます。
-
-### Warning
-
-<img src="images/uikit-warning.png" width="520" />
-
-タスクやアクションで何らかの警告が発生したことを知らせます。
-
-### Error
-
-<img src="images/uikit-error.png" width="520" />
-
- エラーが起きたことを知らせます。
-
-### Selection
-
-<img src="images/uikit-selection.png" width="520" />
-
-UI要素の値が変化したことを知らせます。
 
 ## ライセンス
 
