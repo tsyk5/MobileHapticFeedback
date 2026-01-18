@@ -65,9 +65,9 @@ namespace tsyk5.MobileHapticFeedback
         public static void PlayImpact(ImpactStyle impactStyle)
         {
 #if UNITY_IOS && !UNITY_EDITOR
-            IOSHapticFeedback.PlayUIKitImpact((int)impactStyle);
+            IOSHapticFeedback.PlayUIKitImpact(impactStyle);
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            AndroidHapticFeedback.PlayImpactStyle((int)impactStyle);
+            AndroidHapticFeedback.PlayImpactStyle(impactStyle);
 #else
             Debug.Log($"[Editor] UIKitImpact({impactStyle})");
 #endif
@@ -87,9 +87,9 @@ namespace tsyk5.MobileHapticFeedback
         public static void PlayNotification(NotificationType notificationType)
         {
 #if UNITY_IOS && !UNITY_EDITOR
-            IOSHapticFeedback.PlayUIKitNotification((int)notificationType);
+            IOSHapticFeedback.PlayUIKitNotification(notificationType);
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            AndroidHapticFeedback.PlayNotification((int)notificationType);
+            AndroidHapticFeedback.PlayNotification(notificationType);
 #else
             Debug.Log($"[Editor] UIKitNotification({notificationType})");
 #endif

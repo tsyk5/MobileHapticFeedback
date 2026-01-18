@@ -44,9 +44,9 @@ namespace tsyk5.MobileHapticFeedback
             MHF_PlayCorePattern(durationsSec, amplitudes, durationsSec.Length);
         }
 
-        public static void PlayUIKitImpact(int style) => MHF_PlayUIKitImpact(style);
+        public static void PlayUIKitImpact(ImpactStyle style) => MHF_PlayUIKitImpact((int)style);
         public static void PlayUIKitSelection() => MHF_PlayUIKitSelection();
-        public static void PlayUIKitNotification(int type) => MHF_PlayUIKitNotification(type);
+        public static void PlayUIKitNotification(NotificationType type) => MHF_PlayUIKitNotification((int)type);
     }
 }
 
