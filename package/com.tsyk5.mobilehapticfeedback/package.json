@@ -1,6 +1,6 @@
 {
   "name": "com.tsyk5.mobilehapticfeedback",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "displayName": "MobileHapticFeedback",
   "description": "Cross-platform mobile haptics plugin for Unity (iOS / Android).",
   "unity": "6000.0",
