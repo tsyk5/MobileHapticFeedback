@@ -10,9 +10,9 @@ namespace tsyk5.MobileHapticFeedback
             get
             {
 #if UNITY_IOS && !UNITY_EDITOR
-        return IOSHapticFeedback.SupportsCoreHaptics;
+                return IOSHapticFeedback.SupportsCoreHaptics;
 #elif UNITY_ANDROID && !UNITY_EDITOR
-        return AndroidHapticFeedback.HasVibrator();
+                return AndroidHapticFeedback.HasVibrator();
 #else
                 return false;
 #endif
