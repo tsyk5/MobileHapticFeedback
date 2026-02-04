@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.2.1
+- fix: include dSYMs in xcframework for both iOS device and simulator
+
 ## 0.2.0
 - fix: fix function arguments
 
