@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.0
+- fix: Android haptics were silent on devices lacking predefined-effect / composition-primitive support
+
 ## 0.2.1
 - fix: include dSYMs in xcframework for both iOS device and simulator
 

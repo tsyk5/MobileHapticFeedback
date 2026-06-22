@@ -104,7 +104,7 @@ public final class MobileHapticFeedback {
         Vibrator v = getVibrator(ctx);
         if (v == null || !v.hasVibrator()) return;
 
-        if (Build.VERSION.SDK_INT >= 29) {
+        if (isEffectSupported(v, VibrationEffect.EFFECT_TICK)) {
             v.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK));
         } else {
             playImpact(ctx, 0.15f, 0.5f, 0.03);
@@ -119,9 +119,15 @@ public final class MobileHapticFeedback {
         int s = clampInt(style, IMPACT_LIGHT, IMPACT_RIGID);
 
         if (Build.VERSION.SDK_INT >= 29) {
-            if (s == IMPACT_LIGHT)  { v.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_TICK)); return; }
-            if (s == IMPACT_MEDIUM) { v.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK)); return; }
-            if (s == IMPACT_HEAVY)  { v.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)); return; }
+            int effectId = -1;
+            if (s == IMPACT_LIGHT)  effectId = VibrationEffect.EFFECT_TICK;
+            else if (s == IMPACT_MEDIUM) effectId = VibrationEffect.EFFECT_CLICK;
+            else if (s == IMPACT_HEAVY)  effectId = VibrationEffect.EFFECT_HEAVY_CLICK;
+
+            if (effectId != -1 && isEffectSupported(v, effectId)) {
+                v.vibrate(VibrationEffect.createPredefined(effectId));
+                return;
+            }
         }
 
         switch (s) {
@@ -142,7 +148,10 @@ public final class MobileHapticFeedback {
         int nt = clampInt(type, NOTIF_SUCCESS, NOTIF_ERROR);
         int noRepeat = -1;
 
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (Build.VERSION.SDK_INT >= 30
+                && areAllPrimitivesSupported(v,
+                        VibrationEffect.Composition.PRIMITIVE_TICK,
+                        VibrationEffect.Composition.PRIMITIVE_CLICK)) {
             VibrationEffect.Composition comp = VibrationEffect.startComposition();
             if (nt == NOTIF_SUCCESS) {
                 comp.addPrimitive(VibrationEffect.Composition.PRIMITIVE_TICK, 1.0f)
@@ -190,6 +199,26 @@ public final class MobileHapticFeedback {
         @SuppressWarnings("deprecation")
         long[] t = timings;
         v.vibrate(t, noRepeat);
+    }
+
+    private static boolean isEffectSupported(Vibrator v, int effectId) {
+        if (Build.VERSION.SDK_INT < 30) return false;
+        try {
+            int[] support = v.areEffectsSupported(effectId);
+            return support.length > 0
+                    && support[0] == Vibrator.VIBRATION_EFFECT_SUPPORT_YES;
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    private static boolean areAllPrimitivesSupported(Vibrator v, int... primitives) {
+        if (Build.VERSION.SDK_INT < 30) return false;
+        try {
+            return v.areAllPrimitivesSupported(primitives);
+        } catch (Throwable ignored) {
+            return false;
+        }
     }
 
     private static float clamp01(float v) {
