@@ -37,7 +37,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 To install a specific version, append a tag:
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.2.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.4.0
 ```
 
 
@@ -65,7 +65,7 @@ MobileHapticFeedback.Stop();
 Parameters
 - `intensity` (0..1): Strength of the haptic.
 - `sharpness` (0..1): Crispness / sharp edge of the haptic (iOS only).
-- `durationSec` (sec): Duration of the haptic.
+- `durationSec` (sec): Duration of the haptic (clamped to 0.01-10s, see `MinDurationSec` / `MaxDurationSec`).
 
 > <b>⚠️ Note (Android)</b>: <br/>
 Android does not support the sharpness parameter.<br/>
@@ -76,21 +76,19 @@ Changing this value does not affect vibration behavior.
 ```csharp
 MobileHapticFeedback.Prepare();
 
-
-var durationsSec = new float[]
-    {
-        0.6f, 0.15f
-    };
-var amplitudes = new float[]
-    {
-        0.1f, 0f
-    }
-MobileHapticFeedback.PlayPattern(durationsSec,amplitudes);
+// One PatternSegment = (durationSec, amplitude)
+MobileHapticFeedback.PlayPattern(
+    new PatternSegment(0.6f, 0.1f),
+    new PatternSegment(0.15f, 0f)   // amplitude 0 = silence
+);
 ```
 Parameters
 
-- durations (sec): Duration of each segment.
-- amplitudes (0..1): `0` means silence.`1` means maximum strength.
+- `durationSec` (sec): Duration of the segment.
+- `amplitude` (0..1): Strength of the segment. `0` means silence, `1` means maximum strength.
+
+> `PlayPattern(float[] durationsSec, float[] amplitudes)` is deprecated since v0.4.0:
+> the parallel arrays could get out of sync and fail silently.
 
 ## Samples ( Sample01 )
 
