@@ -6,6 +6,8 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.os.VibratorManager;
 
+import java.util.Arrays;
+
 public final class MobileHapticFeedback {
 
     private MobileHapticFeedback() {}
@@ -85,18 +87,7 @@ public final class MobileHapticFeedback {
             amps[i] = clampInt(a, 0, 255);
         }
 
-        int noRepeat = -1;
-
-        if (Build.VERSION.SDK_INT >= 26) {
-            VibrationEffect effect = v.hasAmplitudeControl()
-                    ? VibrationEffect.createWaveform(timings, amps, noRepeat)
-                    : VibrationEffect.createWaveform(timings, noRepeat);
-            v.vibrate(effect);
-        } else {
-            @SuppressWarnings("deprecation")
-            long[] t = timings;
-            v.vibrate(t, noRepeat);
-        }
+        vibrateWaveform(v, timings, amps);
     }
 
     // Equivalent to UIKit Selection
@@ -146,7 +137,6 @@ public final class MobileHapticFeedback {
         if (v == null || !v.hasVibrator()) return;
 
         int nt = clampInt(type, NOTIF_SUCCESS, NOTIF_ERROR);
-        int noRepeat = -1;
 
         if (Build.VERSION.SDK_INT >= 30
                 && areAllPrimitivesSupported(v,
@@ -169,36 +159,61 @@ public final class MobileHapticFeedback {
             return;
         }
 
-        if (Build.VERSION.SDK_INT >= 26) {
-            long[] timings;
-            int[] amps;
+        long[] timings;
+        int[] amps;
 
-            if (nt == NOTIF_SUCCESS) {
-                timings = new long[]{55, 55, 53};
-                amps = new int[]{178, 0, 255};
-            } else if (nt == NOTIF_WARNING) {
-                timings = new long[]{55, 70, 55};
-                amps = new int[]{229, 0, 178};
-            } else {
-                timings = new long[]{51, 32, 55, 32, 55};
-                amps = new int[]{204, 0, 204, 0, 255};
-            }
+        if (nt == NOTIF_SUCCESS) {
+            timings = new long[]{55, 55, 53};
+            amps = new int[]{178, 0, 255};
+        } else if (nt == NOTIF_WARNING) {
+            timings = new long[]{55, 70, 55};
+            amps = new int[]{229, 0, 178};
+        } else {
+            timings = new long[]{51, 32, 55, 32, 55};
+            amps = new int[]{204, 0, 204, 0, 255};
+        }
 
-            VibrationEffect effect = v.hasAmplitudeControl()
-                    ? VibrationEffect.createWaveform(timings, amps, noRepeat)
-                    : VibrationEffect.createWaveform(timings, noRepeat);
-            v.vibrate(effect);
+        vibrateWaveform(v, timings, amps);
+    }
+
+    private static void vibrateWaveform(Vibrator v, long[] timings, int[] amps) {
+        int noRepeat = -1;
+
+        if (Build.VERSION.SDK_INT >= 26 && v.hasAmplitudeControl()) {
+            v.vibrate(VibrationEffect.createWaveform(timings, amps, noRepeat));
             return;
         }
 
-        long[] timings;
-        if (nt == NOTIF_SUCCESS) timings = new long[]{55, 55, 53};
-        else if (nt == NOTIF_WARNING) timings = new long[]{55, 70, 55};
-        else timings = new long[]{51, 32, 55, 32, 55};
+        long[] onOff = toOnOffTimings(timings, amps);
 
-        @SuppressWarnings("deprecation")
-        long[] t = timings;
-        v.vibrate(t, noRepeat);
+        if (Build.VERSION.SDK_INT >= 26) {
+            v.vibrate(VibrationEffect.createWaveform(onOff, noRepeat));
+        } else {
+            @SuppressWarnings("deprecation")
+            long[] t = onOff;
+            v.vibrate(t, noRepeat);
+        }
+    }
+
+    // NOTE: amplitude-less waveform APIs read timings as alternating off/on *starting with off*,
+    //       so timing/amplitude pairs must be folded (amp > 0 = on, adjacent same-state merged).
+    private static long[] toOnOffTimings(long[] timings, int[] amps) {
+        long[] out = new long[timings.length + 1]; // +1: leading off period
+
+        int length = 1;
+        boolean isOn = false;
+
+        for (int i = 0; i < timings.length; i++) {
+            boolean segmentIsOn = amps[i] > 0;
+            if (segmentIsOn == isOn) {
+                out[length - 1] += timings[i];
+            } else {
+                out[length++] = timings[i];
+                isOn = segmentIsOn;
+            }
+        }
+
+        return length == out.length ? out : Arrays.copyOf(out, length);
     }
 
     private static boolean isEffectSupported(Vibrator v, int effectId) {
