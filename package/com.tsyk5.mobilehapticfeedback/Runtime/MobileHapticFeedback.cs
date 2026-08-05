@@ -5,6 +5,9 @@ namespace tsyk5.MobileHapticFeedback
 {
     public static class MobileHapticFeedback
     {
+        public const double MinDurationSec = 0.01;
+        public const double MaxDurationSec = 10.0;
+
         public static bool IsSupported
         {
             get
@@ -39,7 +42,8 @@ namespace tsyk5.MobileHapticFeedback
         {
             intensity = Mathf.Clamp01(intensity);
             sharpness = Mathf.Clamp01(sharpness);
-            durationSec = Math.Clamp(durationSec, 0.01, 2.0);
+
+            durationSec = Math.Clamp(durationSec, MinDurationSec, MaxDurationSec);
 
 #if UNITY_IOS && !UNITY_EDITOR
             IOSHapticFeedback.PlayCoreImpact(intensity, sharpness, durationSec);

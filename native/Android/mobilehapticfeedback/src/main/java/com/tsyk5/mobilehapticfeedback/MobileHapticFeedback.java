@@ -12,6 +12,10 @@ public final class MobileHapticFeedback {
 
     private MobileHapticFeedback() {}
 
+    // Keep in sync with MobileHapticFeedback.MinDurationSec / MaxDurationSec (C#)
+    private static final long MIN_DURATION_MS = 10L;
+    private static final long MAX_DURATION_MS = 10_000L;
+
     // ImpactStyle
     public static final int IMPACT_LIGHT  = 0;
     public static final int IMPACT_MEDIUM = 1;
@@ -54,7 +58,7 @@ public final class MobileHapticFeedback {
         if (v == null || !v.hasVibrator()) return;
 
         float i = clamp01(intensity);
-        long durationMs = clampLong((long) (durationSec * 1000.0), 10L, 2000L);
+        long durationMs = clampLong((long) (durationSec * 1000.0), MIN_DURATION_MS, MAX_DURATION_MS);
 
         int amp = clampInt((int) (i * 255f), 1, 255);
 
@@ -78,7 +82,7 @@ public final class MobileHapticFeedback {
         long[] timings = new long[durationsSec.length];
         for (int i = 0; i < durationsSec.length; i++) {
             long ms = (long) (durationsSec[i] * 1000.0);
-            timings[i] = clampLong(ms, 0L, 5000L);
+            timings[i] = clampLong(ms, 0L, MAX_DURATION_MS);
         }
 
         int[] amps = new int[amplitudes.length];
