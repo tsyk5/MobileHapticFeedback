@@ -6,56 +6,59 @@ namespace tsyk5.MobileHapticFeedback
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
         private const string JavaClass = "com.tsyk5.mobilehapticfeedback.MobileHapticFeedback";
-    
+
+        private static AndroidJavaClass _pluginClass;
+        private static AndroidJavaObject _activity;
+        private static bool? _hasVibrator;
+
+        private static AndroidJavaClass PluginClass => _pluginClass ??= new AndroidJavaClass(JavaClass);
+
         private static AndroidJavaObject Activity
         {
             get
             {
-                using var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-                return unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                if (_activity == null)
+                {
+                    using var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+                    _activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+                }
+                return _activity;
             }
         }
-    
+
         public static bool HasVibrator()
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            return jc.CallStatic<bool>("hasVibrator", Activity);
+            return _hasVibrator ??= PluginClass.CallStatic<bool>("hasVibrator", Activity);
         }
-    
+
         public static void Stop()
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            jc.CallStatic("stop", Activity);
+            PluginClass.CallStatic("stop", Activity);
         }
-    
+
         public static void PlayImpact(float intensity, float sharpness, double durationSec)
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            jc.CallStatic("playImpact", Activity, intensity, sharpness, durationSec);
+            PluginClass.CallStatic("playImpact", Activity, intensity, sharpness, durationSec);
         }
-    
+
         public static void PlayPattern(float[] durationsSec, float[] amplitudes)
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            jc.CallStatic("playPattern", Activity, durationsSec, amplitudes);
+            PluginClass.CallStatic("playPattern", Activity, durationsSec, amplitudes);
         }
-    
+
         public static void PlaySelection()
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            jc.CallStatic("playSelection", Activity);
+            PluginClass.CallStatic("playSelection", Activity);
         }
-    
+
         public static void PlayNotification(NotificationType notificationType)
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            jc.CallStatic("playNotification", Activity, (int)notificationType);
+            PluginClass.CallStatic("playNotification", Activity, (int)notificationType);
         }
-    
+
         public static void PlayImpactStyle(ImpactStyle impactStyle)
         {
-            using var jc = new AndroidJavaClass(JavaClass);
-            jc.CallStatic("playImpactStyle", Activity, (int)impactStyle);
+            PluginClass.CallStatic("playImpactStyle", Activity, (int)impactStyle);
         }
 #endif
     }

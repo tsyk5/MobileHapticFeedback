@@ -5,6 +5,9 @@ namespace tsyk5.MobileHapticFeedback
 {
     public static class MobileHapticFeedback
     {
+        public const double MinDurationSec = 0.01;
+        public const double MaxDurationSec = 10.0;
+
         public static bool IsSupported
         {
             get
@@ -39,7 +42,8 @@ namespace tsyk5.MobileHapticFeedback
         {
             intensity = Mathf.Clamp01(intensity);
             sharpness = Mathf.Clamp01(sharpness);
-            durationSec = Math.Clamp(durationSec, 0.01, 2.0);
+
+            durationSec = Math.Clamp(durationSec, MinDurationSec, MaxDurationSec);
 
 #if UNITY_IOS && !UNITY_EDITOR
             IOSHapticFeedback.PlayCoreImpact(intensity, sharpness, durationSec);
@@ -51,7 +55,28 @@ namespace tsyk5.MobileHapticFeedback
 #endif
         }
 
+        public static void PlayPattern(params PatternSegment[] pattern)
+        {
+            if (pattern == null || pattern.Length == 0) return;
+
+            var durationsSec = new float[pattern.Length];
+            var amplitudes = new float[pattern.Length];
+            for (int i = 0; i < pattern.Length; i++)
+            {
+                durationsSec[i] = pattern[i].DurationSec;
+                amplitudes[i] = pattern[i].Amplitude;
+            }
+
+            PlayPatternCore(durationsSec, amplitudes);
+        }
+
+        [Obsolete("Parallel arrays allow length mismatches that fail silently. Use PlayPattern(params PatternSegment[]) instead.")]
         public static void PlayPattern(float[] durationsSec, float[] amplitudes)
+        {
+            PlayPatternCore(durationsSec, amplitudes);
+        }
+
+        private static void PlayPatternCore(float[] durationsSec, float[] amplitudes)
         {
 #if UNITY_IOS && !UNITY_EDITOR
             IOSHapticFeedback.PlayCorePattern(durationsSec, amplitudes);

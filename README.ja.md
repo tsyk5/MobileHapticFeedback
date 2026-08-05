@@ -37,7 +37,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 特定バージョンを指定する場合はタグを付与してください。
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.2.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.4.0
 ```
 
 ## クイックスタート
@@ -64,7 +64,7 @@ MobileHapticFeedback.Stop();
 パラメータ
 - `intensity` (0..1): ハプティックの強度
 - `sharpness` (0..1): 鋭さ（iOS のみ）
-- `durationSec` (sec): 再生時間
+- `durationSec` (sec): 再生時間（0.01〜10秒にclamp。`MinDurationSec` / `MaxDurationSec` 参照）
 
 > ⚠️ 補足（Android）<br>
 > Android では sharpness はサポートされていません。<br>
@@ -75,21 +75,19 @@ MobileHapticFeedback.Stop();
 ```csharp
 MobileHapticFeedback.Prepare();
 
-
-var durationsSec = new float[]
-    {
-        0.6f, 0.15f
-    };
-var amplitudes = new float[]
-    {
-        0.1f, 0f
-    }
-MobileHapticFeedback.PlayPattern(durationsSec,amplitudes);
+// PatternSegment 1つ = (durationSec, amplitude)
+MobileHapticFeedback.PlayPattern(
+    new PatternSegment(0.6f, 0.1f),
+    new PatternSegment(0.15f, 0f)   // amplitude 0 = 無音
+);
 ```
 パラメータ
 
-- durations (sec): 各セグメントの再生時間
-- amplitudes (0..1): 各セグメントの強度。`0` は無音、`1`は最大強度
+- `durationSec` (sec): セグメントの再生時間
+- `amplitude` (0..1): セグメントの強度。`0` は無音、`1`は最大強度
+
+> `PlayPattern(float[] durationsSec, float[] amplitudes)` は v0.4.0 で非推奨になりました。
+> 2本の配列の要素数がズレてもコンパイルが通り、サイレントに失敗するためです。
 
 ## サンプル（Sample01）
 

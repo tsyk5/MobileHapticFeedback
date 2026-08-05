@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+- fix: inverted waveform patterns on Android devices without amplitude control
+- fix: JNI global reference leak on Android
+- feat: add type-safe `PlayPattern(params PatternSegment[])` and deprecate the array version
+- fix: raise haptic duration cap from 2s to 10s
+
 ## 0.3.0
 - fix: Android haptics were silent on devices lacking predefined-effect / composition-primitive support
 
