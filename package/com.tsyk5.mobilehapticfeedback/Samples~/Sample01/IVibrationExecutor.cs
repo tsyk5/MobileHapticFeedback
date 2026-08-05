@@ -54,50 +54,25 @@ namespace tsyk5.MobileHapticFeedback.Sample01
                     var symbolGap = dit;
                     var letterGap = dit * 1.5f;
                     MobileHapticFeedback.PlayPattern(
-                        new float[] {
-                            dit, symbolGap, dit, symbolGap,  dit, // S
-                            letterGap,
-                            dah, symbolGap, dah, symbolGap, dah, // O
-                            letterGap,
-                            dit, symbolGap, dit, symbolGap,  dit // S
-                        },
-                        new float[] {
-                            1,0, 1,0, 1,
-                            0,
-                            1,0, 1,0, 1,
-                            0,
-                            1,0, 1,0, 1
-                        }
+                        new(dit, 1f), new(symbolGap, 0f), new(dit, 1f), new(symbolGap, 0f), new(dit, 1f), // S
+                        new(letterGap, 0f),
+                        new(dah, 1f), new(symbolGap, 0f), new(dah, 1f), new(symbolGap, 0f), new(dah, 1f), // O
+                        new(letterGap, 0f),
+                        new(dit, 1f), new(symbolGap, 0f), new(dit, 1f), new(symbolGap, 0f), new(dit, 1f)  // S
                     );
                     break;
                 case VibrationType.StepUp:
                     MobileHapticFeedback.PlayPattern(
-                        new float[]
-                        {
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f
-                        },
-                        new float[]
-                        {
-                            0.1f, 0f,
-                            0.2f, 0f,
-                            0.3f, 0f,
-                            0.4f, 0f,
-                            0.5f, 0f,
-                            0.6f, 0f,
-                            0.7f, 0f,
-                            0.8f, 0f,
-                            0.9f, 0f,
-                            1.0f
-                        }
+                        new(0.6f, 0.1f), new(0.15f, 0f),
+                        new(0.6f, 0.2f), new(0.15f, 0f),
+                        new(0.6f, 0.3f), new(0.15f, 0f),
+                        new(0.6f, 0.4f), new(0.15f, 0f),
+                        new(0.6f, 0.5f), new(0.15f, 0f),
+                        new(0.6f, 0.6f), new(0.15f, 0f),
+                        new(0.6f, 0.7f), new(0.15f, 0f),
+                        new(0.6f, 0.8f), new(0.15f, 0f),
+                        new(0.6f, 0.9f), new(0.15f, 0f),
+                        new(0.6f, 1.0f)
                     );
                     break;
                 case VibrationType.Heartbeat:
@@ -106,22 +81,11 @@ namespace tsyk5.MobileHapticFeedback.Sample01
                     var dub = 0.10f;
                     var rest = 1.0f;
                     MobileHapticFeedback.PlayPattern(
-                        new float[]
-                        {
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                        },
-                        new float[]
-                        {
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                        }
+                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
+                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
+                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
+                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
+                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f)
                     );
                     break;
             }
