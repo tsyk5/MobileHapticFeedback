@@ -78,9 +78,10 @@ namespace tsyk5.MobileHapticFeedback.Sample01
                     );
                     break;
                 case VibrationType.Heartbeat:
-                    PatternSegment lub = new(0.07f, 0.55f);
+                    // sharpness: soft "lub", crisper "dub" (ignored where IsSharpnessSupported is false)
+                    PatternSegment lub = new(0.07f, 0.55f, sharpness: 0.3f);
                     PatternSegment gap = new(0.03f, 0f);
-                    PatternSegment dub = new(0.10f, 0.95f);
+                    PatternSegment dub = new(0.10f, 0.95f, sharpness: 0.7f);
                     PatternSegment rest = new(1.0f, 0f);
                     MobileHapticFeedback.PlayPattern(
                         lub, gap, dub, rest,

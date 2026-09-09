@@ -76,16 +76,19 @@ MobileHapticFeedback.Stop();
 ```csharp
 MobileHapticFeedback.Prepare();
 
-// PatternSegment 1つ = (durationSec, amplitude)
+// PatternSegment 1つ = (durationSec, amplitude, sharpness = 0.5)
 MobileHapticFeedback.PlayPattern(
     new PatternSegment(0.6f, 0.1f),
-    new PatternSegment(0.15f, 0f)   // amplitude 0 = 無音
+    new PatternSegment(0.15f, 0f),              // amplitude 0 = 無音
+    new PatternSegment(0.2f, 0.8f, sharpness: 0.9f)
 );
 ```
 パラメータ
 
 - `durationSec` (sec): セグメントの再生時間
 - `amplitude` (0..1): セグメントの強度。`0` は無音、`1`は最大強度
+- `sharpness` (0..1, 省略可): セグメントの鋭さ。省略時は `PatternSegment.DefaultSharpness`（0.5）。
+  `IsSharpnessSupported` が true の環境でのみ反映され、それ以外では無視されます。
 
 > `PlayPattern(float[] durationsSec, float[] amplitudes)` は v0.4.0 で非推奨になりました。
 > 2本の配列の要素数がズレてもコンパイルが通り、サイレントに失敗するためです。

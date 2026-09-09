@@ -18,8 +18,8 @@ public final class MobileHapticFeedback {
     private static final long MIN_DURATION_MS = 10L;
     private static final long MAX_DURATION_MS = 10_000L;
 
-    // Keep in sync with the fixed sharpness used by playCorePattern (iOS)
-    private static final float PATTERN_SHARPNESS = 0.5f;
+    // Keep in sync with PatternSegment.DefaultSharpness (C#)
+    private static final float DEFAULT_SHARPNESS = 0.5f;
 
     // Guaranteed minimum for devices that support envelope effects (API 36+)
     private static final long DEFAULT_MIN_CONTROL_POINT_MS = 20L;
@@ -96,11 +96,13 @@ public final class MobileHapticFeedback {
         }
     }
 
-    public static void playPattern(Context ctx, float[] durationsSec, float[] amplitudes) {
+    // sharpnesses may be null (defaults to DEFAULT_SHARPNESS); only honored with envelope support (API 36+)
+    public static void playPattern(Context ctx, float[] durationsSec, float[] amplitudes, float[] sharpnesses) {
         Vibrator v = getVibrator(ctx);
         if (v == null || !v.hasVibrator()) return;
         if (durationsSec == null || amplitudes == null) return;
         if (durationsSec.length == 0 || durationsSec.length != amplitudes.length) return;
+        if (sharpnesses != null && sharpnesses.length != durationsSec.length) return;
 
         long[] timings = new long[durationsSec.length];
         for (int i = 0; i < durationsSec.length; i++) {
@@ -114,7 +116,11 @@ public final class MobileHapticFeedback {
         }
 
         if (supportsEnvelopeEffects(v)) {
-            playEnvelopePattern(v, timings, amps01, PATTERN_SHARPNESS);
+            float[] sharp01 = new float[durationsSec.length];
+            for (int i = 0; i < sharp01.length; i++) {
+                sharp01[i] = sharpnesses != null ? clamp01(sharpnesses[i]) : DEFAULT_SHARPNESS;
+            }
+            playEnvelopePattern(v, timings, amps01, sharp01);
             return;
         }
 
@@ -254,15 +260,23 @@ public final class MobileHapticFeedback {
     // Each segment becomes "transition to the target amplitude as fast as possible, then hold".
     // The transition is taken out of the segment's own duration so the overall timing is preserved.
     // Segments shorter than the minimum control-point duration are stretched to it.
+    // Silent segments carry the sharpness of the following audible segment so the next rise
+    // starts at the right pitch.
     @TargetApi(36)
-    private static void playEnvelopePattern(Vibrator v, long[] timings, float[] amps01, float sharpness) {
+    private static void playEnvelopePattern(Vibrator v, long[] timings, float[] amps01, float[] sharp01) {
         long min = minControlPointMs(v);
 
+        float initialSharpness = DEFAULT_SHARPNESS;
+        for (int i = 0; i < timings.length; i++) {
+            if (timings[i] > 0 && amps01[i] > 0f) { initialSharpness = sharp01[i]; break; }
+        }
+
         VibrationEffect.BasicEnvelopeBuilder b = new VibrationEffect.BasicEnvelopeBuilder()
-                .setInitialSharpness(sharpness);
+                .setInitialSharpness(initialSharpness);
 
         int points = 0;
         float lastIntensity = 0f;
+        float lastSharpness = initialSharpness;
 
         for (int i = 0; i < timings.length; i++) {
             long t = timings[i];
@@ -270,15 +284,19 @@ public final class MobileHapticFeedback {
             if (t <= 0) continue;
 
             if (a > 0f) {
-                b.addControlPoint(a, sharpness, min);
+                float s = sharp01[i];
+                b.addControlPoint(a, s, min);
                 points++;
                 if (t > min) {
-                    b.addControlPoint(a, sharpness, t - min);
+                    b.addControlPoint(a, s, t - min);
                     points++;
                 }
+                lastSharpness = s;
             } else {
-                b.addControlPoint(0f, sharpness, Math.max(t, min));
+                float s = nextAudibleSharpness(timings, amps01, sharp01, i + 1, lastSharpness);
+                b.addControlPoint(0f, s, Math.max(t, min));
                 points++;
+                lastSharpness = s;
             }
             lastIntensity = a;
         }
@@ -287,10 +305,17 @@ public final class MobileHapticFeedback {
 
         // Envelope effects must end at zero intensity
         if (lastIntensity > 0f) {
-            b.addControlPoint(0f, sharpness, min);
+            b.addControlPoint(0f, lastSharpness, min);
         }
 
         v.vibrate(b.build());
+    }
+
+    private static float nextAudibleSharpness(long[] timings, float[] amps01, float[] sharp01, int from, float fallback) {
+        for (int i = from; i < timings.length; i++) {
+            if (timings[i] > 0 && amps01[i] > 0f) return sharp01[i];
+        }
+        return fallback;
     }
 
     // ---- Waveform fallback -------------------------------------------------------------------

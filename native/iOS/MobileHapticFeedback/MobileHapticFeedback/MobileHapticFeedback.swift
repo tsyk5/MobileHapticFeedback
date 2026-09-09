@@ -93,9 +93,11 @@ import os.log
     }
 
     // CoreHaptics: Pattern
-    @objc public static func playCorePattern(durationsSec: [NSNumber], amplitudes: [NSNumber]) {
+    @objc public static func playCorePattern(durationsSec: [NSNumber], amplitudes: [NSNumber], sharpnesses: [NSNumber]) {
         guard supportsHaptics else { return }
-        guard durationsSec.count == amplitudes.count, durationsSec.count > 0 else { return }
+        guard durationsSec.count > 0,
+              durationsSec.count == amplitudes.count,
+              durationsSec.count == sharpnesses.count else { return }
         prepareCoreHaptics()
 
         var t: TimeInterval = 0
@@ -105,13 +107,14 @@ import os.log
         for idx in 0..<durationsSec.count {
             let dur = max(0.01, durationsSec[idx].doubleValue)
             let amp = max(0, min(1, amplitudes[idx].floatValue))
+            let sharp = max(0, min(1, sharpnesses[idx].floatValue))
 
             if amp > 0.0001 {
                 let ev = CHHapticEvent(
                     eventType: .hapticContinuous,
                     parameters: [
                         CHHapticEventParameter(parameterID: .hapticIntensity, value: amp),
-                        CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
+                        CHHapticEventParameter(parameterID: .hapticSharpness, value: sharp)
                     ],
                     relativeTime: t,
                     duration: dur

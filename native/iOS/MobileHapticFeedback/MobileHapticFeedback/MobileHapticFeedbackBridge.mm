@@ -19,18 +19,20 @@ extern "C" {
         [MobileHapticFeedback playCoreImpactWithIntensity:intensity sharpness:sharpness durationSec:durationSec];
     }
 
-    void MHF_PlayCorePattern(const float* durationsSec, const float* amplitudes, int count) {
-        if (!durationsSec || !amplitudes || count <= 0) return;
+    void MHF_PlayCorePattern(const float* durationsSec, const float* amplitudes, const float* sharpnesses, int count) {
+        if (!durationsSec || !amplitudes || !sharpnesses || count <= 0) return;
 
         NSMutableArray<NSNumber*>* ds = [NSMutableArray arrayWithCapacity:count];
         NSMutableArray<NSNumber*>* as = [NSMutableArray arrayWithCapacity:count];
+        NSMutableArray<NSNumber*>* ss = [NSMutableArray arrayWithCapacity:count];
 
         for (int i = 0; i < count; i++) {
             [ds addObject:@(durationsSec[i])];
             [as addObject:@(amplitudes[i])];
+            [ss addObject:@(sharpnesses[i])];
         }
 
-        [MobileHapticFeedback playCorePatternWithDurationsSec:ds amplitudes:as];
+        [MobileHapticFeedback playCorePatternWithDurationsSec:ds amplitudes:as sharpnesses:ss];
     }
 
     void MHF_PlayUIKitImpact(int style) {

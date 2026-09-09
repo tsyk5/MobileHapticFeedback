@@ -10,15 +10,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		4vpY2G9UhAKta7FKBAWVVid6w1Q=
+		fgqVJADSOwud9A+G4lOWs/MgVRo=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		YDmM22Lz7ce7cOgI8EcyGKYkQ6Y=
+		n4ki24Hht+6GDaFRMVoyv4xs2Xc=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		3lpYnxS6gYIpDdxm5oZp0NGH+sc=
+		XuOVb2GLQWiNpa2WlOEKDRcQdWo=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		3lpYnxS6gYIpDdxm5oZp0NGH+sc=
+		XuOVb2GLQWiNpa2WlOEKDRcQdWo=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		HrIbJOgkiU8FfQBWDj2OtcJgN1Y=
+		iWKkxizuHXpWS22EOUusifJYl74=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -50,14 +50,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0jddA6wq0WsnsRdYAdt99Vi1uwl6nvFuZdcc7bfhSmE=
+			zBlbhXGvr+jVoveSYMhZqg5eO/MY0jVGQ5RvjQ+ddaE=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+nH6AfW4de7/ce6NfZLge4XheCTJj6QT5P1U716JiQg=
+			jGy7honihwTLRdu1oevlGJCs+KQ9XJK2fadOLDjbHeM=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -71,14 +71,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+nH6AfW4de7/ce6NfZLge4XheCTJj6QT5P1U716JiQg=
+			jGy7honihwTLRdu1oevlGJCs+KQ9XJK2fadOLDjbHeM=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fT2eFYGslK7a1JEIgVxPN/fAY7QK//5UlRtfx5wDftU=
+			Fc72kj3IQhwpbIWrhBdYmoBVuUnTEbU5PKCsIzz8o/w=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

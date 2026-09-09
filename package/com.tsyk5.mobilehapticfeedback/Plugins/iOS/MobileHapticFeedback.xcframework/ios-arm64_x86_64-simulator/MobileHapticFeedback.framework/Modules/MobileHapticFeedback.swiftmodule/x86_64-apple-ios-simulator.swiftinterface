@@ -17,7 +17,7 @@ import os
   @objc public static func prepareCoreHaptics()
   @objc public static func stopCoreHaptics()
   @objc public static func playCoreImpact(intensity: Swift.Float, sharpness: Swift.Float, durationSec: Swift.Double)
-  @objc public static func playCorePattern(durationsSec: [Foundation.NSNumber], amplitudes: [Foundation.NSNumber])
+  @objc public static func playCorePattern(durationsSec: [Foundation.NSNumber], amplitudes: [Foundation.NSNumber], sharpnesses: [Foundation.NSNumber])
   @objc public static func playUIKitImpact(style: Swift.Int)
   @objc public static func playUIKitSelection()
   @objc public static func playUIKitNotification(type: Swift.Int)

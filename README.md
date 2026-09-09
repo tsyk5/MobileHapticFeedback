@@ -78,16 +78,19 @@ Check `MobileHapticFeedback.IsSharpnessSupported` at runtime to adapt your UI.
 ```csharp
 MobileHapticFeedback.Prepare();
 
-// One PatternSegment = (durationSec, amplitude)
+// One PatternSegment = (durationSec, amplitude, sharpness = 0.5)
 MobileHapticFeedback.PlayPattern(
     new PatternSegment(0.6f, 0.1f),
-    new PatternSegment(0.15f, 0f)   // amplitude 0 = silence
+    new PatternSegment(0.15f, 0f),              // amplitude 0 = silence
+    new PatternSegment(0.2f, 0.8f, sharpness: 0.9f)
 );
 ```
 Parameters
 
 - `durationSec` (sec): Duration of the segment.
 - `amplitude` (0..1): Strength of the segment. `0` means silence, `1` means maximum strength.
+- `sharpness` (0..1, optional): Crispness of the segment. Defaults to `PatternSegment.DefaultSharpness` (0.5).
+  Honored where `IsSharpnessSupported` is true, ignored elsewhere.
 
 > `PlayPattern(float[] durationsSec, float[] amplitudes)` is deprecated since v0.4.0:
 > the parallel arrays could get out of sync and fail silently.

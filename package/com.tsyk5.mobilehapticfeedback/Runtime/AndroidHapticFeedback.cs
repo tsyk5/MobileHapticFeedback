@@ -47,9 +47,9 @@ namespace tsyk5.MobileHapticFeedback
             PluginClass.CallStatic("playImpact", Activity, intensity, sharpness, durationSec);
         }
 
-        public static void PlayPattern(float[] durationsSec, float[] amplitudes)
+        public static void PlayPattern(float[] durationsSec, float[] amplitudes, float[] sharpnesses)
         {
-            PluginClass.CallStatic("playPattern", Activity, durationsSec, amplitudes);
+            PluginClass.CallStatic("playPattern", Activity, durationsSec, amplitudes, sharpnesses);
         }
 
         public static void PlaySelection()

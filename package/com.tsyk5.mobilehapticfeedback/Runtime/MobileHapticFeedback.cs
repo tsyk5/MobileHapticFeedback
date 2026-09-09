@@ -80,27 +80,42 @@ namespace tsyk5.MobileHapticFeedback
 
             var durationsSec = new float[pattern.Length];
             var amplitudes = new float[pattern.Length];
+            var sharpnesses = new float[pattern.Length];
             for (int i = 0; i < pattern.Length; i++)
             {
                 durationsSec[i] = pattern[i].DurationSec;
                 amplitudes[i] = pattern[i].Amplitude;
+                sharpnesses[i] = pattern[i].Sharpness;
             }
 
-            PlayPatternCore(durationsSec, amplitudes);
+            PlayPatternCore(durationsSec, amplitudes, sharpnesses);
         }
 
         [Obsolete("Parallel arrays allow length mismatches that fail silently. Use PlayPattern(params PatternSegment[]) instead.")]
         public static void PlayPattern(float[] durationsSec, float[] amplitudes)
         {
-            PlayPatternCore(durationsSec, amplitudes);
+            if (durationsSec == null || amplitudes == null) return;
+            if (durationsSec.Length == 0 || durationsSec.Length != amplitudes.Length) return;
+
+            var sharpnesses = new float[durationsSec.Length];
+            for (int i = 0; i < sharpnesses.Length; i++)
+                sharpnesses[i] = PatternSegment.DefaultSharpness;
+
+            PlayPatternCore(durationsSec, amplitudes, sharpnesses);
         }
 
-        private static void PlayPatternCore(float[] durationsSec, float[] amplitudes)
+        private static void PlayPatternCore(float[] durationsSec, float[] amplitudes, float[] sharpnesses)
         {
+            for (int i = 0; i < amplitudes.Length; i++)
+            {
+                amplitudes[i] = Mathf.Clamp01(amplitudes[i]);
+                sharpnesses[i] = Mathf.Clamp01(sharpnesses[i]);
+            }
+
 #if UNITY_IOS && !UNITY_EDITOR
-            IOSHapticFeedback.PlayCorePattern(durationsSec, amplitudes);
+            IOSHapticFeedback.PlayCorePattern(durationsSec, amplitudes, sharpnesses);
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            AndroidHapticFeedback.PlayPattern(durationsSec, amplitudes);
+            AndroidHapticFeedback.PlayPattern(durationsSec, amplitudes, sharpnesses);
 #else
             Debug.Log("[Editor] PlayPattern");
 #endif

@@ -153,7 +153,7 @@
           {
             "kind": "Function",
             "name": "playCorePattern",
-            "printedName": "playCorePattern(durationsSec:amplitudes:)",
+            "printedName": "playCorePattern(durationsSec:amplitudes:sharpnesses:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -187,14 +187,28 @@
                   }
                 ],
                 "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Foundation.NSNumber]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sa"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playCorePatternWithDurationsSec:amplitudes:",
-            "mangledName": "$s20MobileHapticFeedbackAAC15playCorePattern12durationsSec10amplitudesySaySo8NSNumberCG_AHtFZ",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playCorePatternWithDurationsSec:amplitudes:sharpnesses:",
+            "mangledName": "$s20MobileHapticFeedbackAAC15playCorePattern12durationsSec10amplitudes11sharpnessesySaySo8NSNumberCG_A2ItFZ",
             "moduleName": "MobileHapticFeedback",
             "static": true,
-            "objc_name": "playCorePatternWithDurationsSec:amplitudes:",
+            "objc_name": "playCorePatternWithDurationsSec:amplitudes:sharpnesses:",
             "declAttributes": [
               "Final",
               "AccessControl",
