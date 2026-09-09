@@ -49,43 +49,45 @@ namespace tsyk5.MobileHapticFeedback.Sample01
                 
                 // Core Haptics (Patterns)
                 case VibrationType.Sos: // ... --- ...
-                    var dit = 0.1f;
-                    var dah = dit * 3;
-                    var symbolGap = dit;
-                    var letterGap = dit * 1.5f;
+                    const float unit = 0.1f;
+                    PatternSegment dit = new(unit, 1f);
+                    PatternSegment dah = new(unit * 3, 1f);
+                    PatternSegment symbolGap = new(unit, 0f);
+                    PatternSegment letterGap = new(unit * 1.5f, 0f);
                     MobileHapticFeedback.PlayPattern(
-                        new(dit, 1f), new(symbolGap, 0f), new(dit, 1f), new(symbolGap, 0f), new(dit, 1f), // S
-                        new(letterGap, 0f),
-                        new(dah, 1f), new(symbolGap, 0f), new(dah, 1f), new(symbolGap, 0f), new(dah, 1f), // O
-                        new(letterGap, 0f),
-                        new(dit, 1f), new(symbolGap, 0f), new(dit, 1f), new(symbolGap, 0f), new(dit, 1f)  // S
+                        dit, symbolGap, dit, symbolGap, dit, // S
+                        letterGap,
+                        dah, symbolGap, dah, symbolGap, dah, // O
+                        letterGap,
+                        dit, symbolGap, dit, symbolGap, dit  // S
                     );
                     break;
                 case VibrationType.StepUp:
+                    PatternSegment stepGap = new(0.15f, 0f);
                     MobileHapticFeedback.PlayPattern(
-                        new(0.6f, 0.1f), new(0.15f, 0f),
-                        new(0.6f, 0.2f), new(0.15f, 0f),
-                        new(0.6f, 0.3f), new(0.15f, 0f),
-                        new(0.6f, 0.4f), new(0.15f, 0f),
-                        new(0.6f, 0.5f), new(0.15f, 0f),
-                        new(0.6f, 0.6f), new(0.15f, 0f),
-                        new(0.6f, 0.7f), new(0.15f, 0f),
-                        new(0.6f, 0.8f), new(0.15f, 0f),
-                        new(0.6f, 0.9f), new(0.15f, 0f),
+                        new(0.6f, 0.1f), stepGap,
+                        new(0.6f, 0.2f), stepGap,
+                        new(0.6f, 0.3f), stepGap,
+                        new(0.6f, 0.4f), stepGap,
+                        new(0.6f, 0.5f), stepGap,
+                        new(0.6f, 0.6f), stepGap,
+                        new(0.6f, 0.7f), stepGap,
+                        new(0.6f, 0.8f), stepGap,
+                        new(0.6f, 0.9f), stepGap,
                         new(0.6f, 1.0f)
                     );
                     break;
                 case VibrationType.Heartbeat:
-                    var lub = 0.07f;
-                    var gap = 0.03f;
-                    var dub = 0.10f;
-                    var rest = 1.0f;
+                    PatternSegment lub = new(0.07f, 0.55f);
+                    PatternSegment gap = new(0.03f, 0f);
+                    PatternSegment dub = new(0.10f, 0.95f);
+                    PatternSegment rest = new(1.0f, 0f);
                     MobileHapticFeedback.PlayPattern(
-                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
-                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
-                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
-                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f),
-                        new(lub, 0.55f), new(gap, 0f), new(dub, 0.95f), new(rest, 0f)
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest
                     );
                     break;
             }
