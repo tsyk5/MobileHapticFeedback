@@ -25,7 +25,7 @@ and waveform-based haptic patterns with a consistent programming model across pl
 > the closest available vibration patterns supported by the platform.
 
 ## Supported Platforms
-- iOS 13+
+- iOS 15+
 - Android API 26+
 - Unity 6000.0 or later
 

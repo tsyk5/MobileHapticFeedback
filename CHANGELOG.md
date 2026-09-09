@@ -5,6 +5,13 @@
 - feat: add `MobileHapticFeedback.IsSharpnessSupported`
 - feat: `PatternSegment` gets an optional `sharpness` (default 0.5); iOS Core Haptics and Android 16+ envelope patterns use it per segment
 - chore: Android compileSdk 34 -> 36
+- fix: iOS framework deployment target 18.2 -> 15.0. The 18.2 build folded away the availability check
+  around `UIImpactFeedbackGenerator(style:view:)` (iOS 17.5+), crashing `PlayImpact(ImpactStyle)` on iOS < 17.5
+- fix: iOS UIKit generators are bound to the app's view via `init(view:)` on iOS 17.5+ (the view-less
+  initializers are deprecated from the iOS 27 SDK)
+- perf: iOS Core Haptics engine is created with `audioSession: nil` and `playsHapticsOnly`, and is
+  restarted only when it actually stopped instead of on every play
+- docs: minimum iOS is now 15 (the floor of Xcode 26 and Unity 6.3)
 
 ## 0.4.0
 - fix: inverted waveform patterns on Android devices without amplitude control

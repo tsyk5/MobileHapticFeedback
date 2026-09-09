@@ -20,6 +20,13 @@
       },
       {
         "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "MobileHapticFeedback"
+      },
+      {
+        "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
         "declKind": "Import",
@@ -80,7 +87,8 @@
             "declAttributes": [
               "Final",
               "AccessControl",
-              "ObjC"
+              "ObjC",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -417,21 +425,28 @@
     {
       "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
       "kind": "StringLiteral",
-      "offset": 170,
+      "offset": 190,
       "length": 32,
       "value": "\"com.tsyk5.mobilehapticfeedback\""
     },
     {
       "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
       "kind": "StringLiteral",
-      "offset": 214,
+      "offset": 234,
       "length": 9,
       "value": "\"Haptics\""
     },
     {
       "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
+      "kind": "BooleanLiteral",
+      "offset": 571,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
       "kind": "Dictionary",
-      "offset": 706,
+      "offset": 1220,
       "length": 3,
       "value": "[]"
     }
