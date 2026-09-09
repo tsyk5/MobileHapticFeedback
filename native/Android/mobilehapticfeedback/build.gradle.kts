@@ -4,10 +4,11 @@ plugins {
 
 android {
     namespace = "com.tsyk5.mobilehapticfeedback"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {

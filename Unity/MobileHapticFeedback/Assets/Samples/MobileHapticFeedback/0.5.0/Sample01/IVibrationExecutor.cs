@@ -49,79 +49,46 @@ namespace tsyk5.MobileHapticFeedback.Sample01
                 
                 // Core Haptics (Patterns)
                 case VibrationType.Sos: // ... --- ...
-                    var dit = 0.1f;
-                    var dah = dit * 3;
-                    var symbolGap = dit;
-                    var letterGap = dit * 1.5f;
+                    const float unit = 0.1f;
+                    PatternSegment dit = new(unit, 1f);
+                    PatternSegment dah = new(unit * 3, 1f);
+                    PatternSegment symbolGap = new(unit, 0f);
+                    PatternSegment letterGap = new(unit * 1.5f, 0f);
                     MobileHapticFeedback.PlayPattern(
-                        new float[] {
-                            dit, symbolGap, dit, symbolGap,  dit, // S
-                            letterGap,
-                            dah, symbolGap, dah, symbolGap, dah, // O
-                            letterGap,
-                            dit, symbolGap, dit, symbolGap,  dit // S
-                        },
-                        new float[] {
-                            1,0, 1,0, 1,
-                            0,
-                            1,0, 1,0, 1,
-                            0,
-                            1,0, 1,0, 1
-                        }
+                        dit, symbolGap, dit, symbolGap, dit, // S
+                        letterGap,
+                        dah, symbolGap, dah, symbolGap, dah, // O
+                        letterGap,
+                        dit, symbolGap, dit, symbolGap, dit  // S
                     );
                     break;
                 case VibrationType.StepUp:
+                    PatternSegment stepGap = new(0.15f, 0f);
                     MobileHapticFeedback.PlayPattern(
-                        new float[]
-                        {
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f, 0.15f,
-                            0.6f
-                        },
-                        new float[]
-                        {
-                            0.1f, 0f,
-                            0.2f, 0f,
-                            0.3f, 0f,
-                            0.4f, 0f,
-                            0.5f, 0f,
-                            0.6f, 0f,
-                            0.7f, 0f,
-                            0.8f, 0f,
-                            0.9f, 0f,
-                            1.0f
-                        }
+                        new(0.6f, 0.1f), stepGap,
+                        new(0.6f, 0.2f), stepGap,
+                        new(0.6f, 0.3f), stepGap,
+                        new(0.6f, 0.4f), stepGap,
+                        new(0.6f, 0.5f), stepGap,
+                        new(0.6f, 0.6f), stepGap,
+                        new(0.6f, 0.7f), stepGap,
+                        new(0.6f, 0.8f), stepGap,
+                        new(0.6f, 0.9f), stepGap,
+                        new(0.6f, 1.0f)
                     );
                     break;
                 case VibrationType.Heartbeat:
-                    var lub = 0.07f;
-                    var gap = 0.03f;
-                    var dub = 0.10f;
-                    var rest = 1.0f;
+                    // sharpness: soft "lub", crisper "dub" (ignored where IsSharpnessSupported is false)
+                    PatternSegment lub = new(0.07f, 0.55f, sharpness: 0.3f);
+                    PatternSegment gap = new(0.03f, 0f);
+                    PatternSegment dub = new(0.10f, 0.95f, sharpness: 0.7f);
+                    PatternSegment rest = new(1.0f, 0f);
                     MobileHapticFeedback.PlayPattern(
-                        new float[]
-                        {
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                            lub, gap, dub, rest,
-                        },
-                        new float[]
-                        {
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                            0.55f, 0f, 0.95f, 0f,
-                        }
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest,
+                        lub, gap, dub, rest
                     );
                     break;
             }

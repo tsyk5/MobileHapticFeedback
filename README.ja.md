@@ -14,6 +14,7 @@ UIKit スタイルの簡易フィードバックから、  パラメータ指定
   - UIKit 準拠のハプティック（Impact / Selection / Notification）
 - **Android**
   - VibrationEffect ベースのハプティック（API 26+）
+  - エンベロープベースのインパクト / パターン再生と sharpness 対応（Android 16 以上の対応端末）
 - **Unity**
   - プラットフォーム共通の統一 API
   - ハプティックが無効な場合でも安全に動作
@@ -24,7 +25,7 @@ UIKit スタイルの簡易フィードバックから、  パラメータ指定
 
 ## 対応プラットフォーム
 
-- iOS 13 以上
+- iOS 15 以上
 - Android API 26 以上
 - Unity 6000.0 以上
 
@@ -37,7 +38,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 特定バージョンを指定する場合はタグを付与してください。
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.4.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.5.0
 ```
 
 ## クイックスタート
@@ -63,28 +64,31 @@ MobileHapticFeedback.Stop();
 ```
 パラメータ
 - `intensity` (0..1): ハプティックの強度
-- `sharpness` (0..1): 鋭さ（iOS のみ）
+- `sharpness` (0..1): 鋭さ
 - `durationSec` (sec): 再生時間（0.01〜10秒にclamp。`MinDurationSec` / `MaxDurationSec` 参照）
 
 > ⚠️ 補足（Android）<br>
-> Android では sharpness はサポートされていません。<br>
-> 値を変更しても振動の挙動は変化しません。
+> `sharpness` が効くのは、エンベロープ効果（`VibrationEffect.BasicEnvelopeBuilder`）に対応した Android 16 以上の端末のみです。<br>
+> それ以外の端末では値は無視されます。実行時に `MobileHapticFeedback.IsSharpnessSupported` で判定できます。
 
 ### Patterns API（波形スタイル）
 
 ```csharp
 MobileHapticFeedback.Prepare();
 
-// PatternSegment 1つ = (durationSec, amplitude)
+// PatternSegment 1つ = (durationSec, amplitude, sharpness = 0.5)
 MobileHapticFeedback.PlayPattern(
     new PatternSegment(0.6f, 0.1f),
-    new PatternSegment(0.15f, 0f)   // amplitude 0 = 無音
+    new PatternSegment(0.15f, 0f),              // amplitude 0 = 無音
+    new PatternSegment(0.2f, 0.8f, sharpness: 0.9f)
 );
 ```
 パラメータ
 
 - `durationSec` (sec): セグメントの再生時間
 - `amplitude` (0..1): セグメントの強度。`0` は無音、`1`は最大強度
+- `sharpness` (0..1, 省略可): セグメントの鋭さ。省略時は `PatternSegment.DefaultSharpness`（0.5）。
+  `IsSharpnessSupported` が true の環境でのみ反映され、それ以外では無視されます。
 
 > `PlayPattern(float[] durationsSec, float[] amplitudes)` は v0.4.0 で非推奨になりました。
 > 2本の配列の要素数がズレてもコンパイルが通り、サイレントに失敗するためです。

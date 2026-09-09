@@ -10,47 +10,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		vL9fRC7CiJZv0X/9c/Sj0Y8M3W8=
+		ZRDXgIUeW21UbjCP0QivoaQ1geo=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		YDmM22Lz7ce7cOgI8EcyGKYkQ6Y=
+		xJi6eT6p2lEdQKD3D6KSG1Cs9I0=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		77cCje1t6gjZrkza+mNaCC8NoQc=
+		IgqKDbRt0y/bghkKkMmy1k6qlyo=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		lKWuZG8wpQqbUiRY7/nxqfC59Ck=
+		vA5EkwCUQXi3GvQwabGLhu/YIbM=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		77cCje1t6gjZrkza+mNaCC8NoQc=
+		IgqKDbRt0y/bghkKkMmy1k6qlyo=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		/2haGCFNnhG2Ckjj4YcFWbScxho=
+		Uzt2hfBcYZ13A5oypwRj/EqSX0M=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		YDmM22Lz7ce7cOgI8EcyGKYkQ6Y=
+		xJi6eT6p2lEdQKD3D6KSG1Cs9I0=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		iYeBi2mDHT0r0x+nP5PgFZw3MjI=
+		oBbeKiRHeA2AUG+NpBq6XowIr0I=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Decl1n5cfjp1xbIIZyf6czKIUOs=
+		u13iyqfnY4G0U3CAN4EyeRlVcg4=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		iYeBi2mDHT0r0x+nP5PgFZw3MjI=
+		oBbeKiRHeA2AUG+NpBq6XowIr0I=
 		</data>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		jclWwbAEiKkxVeZfe8jdVgfRAHc=
+		89erD7qEeRqTX6EMBpziVJEb8Xo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,70 +70,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0jddA6wq0WsnsRdYAdt99Vi1uwl6nvFuZdcc7bfhSmE=
+			afppKC5Qqr7pTYSXrn171fDeBVeN5kNJxtCeRS7A1BQ=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RyZ4Ud2KZtPeO95WWjXBOSFO4T3tpwz/YyQ5eultz7w=
+			bOGbIjQaNLOFzGxqe8mWbZTJiAEN2zNC5+5wkGtghXU=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rcCCEE6VaLn1ZL3Dk6iwX5rWkTQHivaZrtAl4R0gq00=
+			JuNsZ0n4hqcEVJIk6Sq7wB3v+h9S0nkNWVJfIGX5yNE=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RyZ4Ud2KZtPeO95WWjXBOSFO4T3tpwz/YyQ5eultz7w=
+			bOGbIjQaNLOFzGxqe8mWbZTJiAEN2zNC5+5wkGtghXU=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			P6hqKySjI+S2uP0I8scjciJCATM5i3G+ClazXt+iHfs=
+			ZyGrO1Ip1FGUIFfnNmvbBHcO8b+b7iKo8AyH3akLDR8=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0jddA6wq0WsnsRdYAdt99Vi1uwl6nvFuZdcc7bfhSmE=
+			afppKC5Qqr7pTYSXrn171fDeBVeN5kNJxtCeRS7A1BQ=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Cc6TxcdQiqxECyeTcEqNAupaGDcrJcub/B/mUYhj6Hs=
+			y6xtK+8F/6vwF8sGxSeMLlZAQR7m0D+2bqDDBKQKuN0=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pE89wInRt9O5UdMdfzWqd4Axp0tMkMidEbBtXfSuKng=
+			9dBtVTrfT3uwiA7cKZkPb+3q/bSgJ346Zyu5u/C8joY=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Cc6TxcdQiqxECyeTcEqNAupaGDcrJcub/B/mUYhj6Hs=
+			y6xtK+8F/6vwF8sGxSeMLlZAQR7m0D+2bqDDBKQKuN0=
 			</data>
 		</dict>
 		<key>Modules/MobileHapticFeedback.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Of+i+ymv2Q6adkMNL9W1/chifBRrFjII6pBuISPXNPU=
+			zFyIeRwYlQJW3szyifJoY+VTmMzqPChk8EykFyWS+Sk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

@@ -20,6 +20,13 @@
       },
       {
         "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "MobileHapticFeedback"
+      },
+      {
+        "kind": "Import",
         "name": "UIKit",
         "printedName": "UIKit",
         "declKind": "Import",
@@ -80,7 +87,8 @@
             "declAttributes": [
               "Final",
               "AccessControl",
-              "ObjC"
+              "ObjC",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -153,7 +161,7 @@
           {
             "kind": "Function",
             "name": "playCorePattern",
-            "printedName": "playCorePattern(durationsSec:amplitudes:)",
+            "printedName": "playCorePattern(durationsSec:amplitudes:sharpnesses:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -187,14 +195,28 @@
                   }
                 ],
                 "usr": "s:Sa"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Foundation.NSNumber]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "NSNumber",
+                    "printedName": "Foundation.NSNumber",
+                    "usr": "c:objc(cs)NSNumber"
+                  }
+                ],
+                "usr": "s:Sa"
               }
             ],
             "declKind": "Func",
-            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playCorePatternWithDurationsSec:amplitudes:",
-            "mangledName": "$s20MobileHapticFeedbackAAC15playCorePattern12durationsSec10amplitudesySaySo8NSNumberCG_AHtFZ",
+            "usr": "c:@M@MobileHapticFeedback@objc(cs)MobileHapticFeedback(cm)playCorePatternWithDurationsSec:amplitudes:sharpnesses:",
+            "mangledName": "$s20MobileHapticFeedbackAAC15playCorePattern12durationsSec10amplitudes11sharpnessesySaySo8NSNumberCG_A2ItFZ",
             "moduleName": "MobileHapticFeedback",
             "static": true,
-            "objc_name": "playCorePatternWithDurationsSec:amplitudes:",
+            "objc_name": "playCorePatternWithDurationsSec:amplitudes:sharpnesses:",
             "declAttributes": [
               "Final",
               "AccessControl",
@@ -403,21 +425,28 @@
     {
       "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
       "kind": "StringLiteral",
-      "offset": 170,
+      "offset": 190,
       "length": 32,
       "value": "\"com.tsyk5.mobilehapticfeedback\""
     },
     {
       "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
       "kind": "StringLiteral",
-      "offset": 214,
+      "offset": 234,
       "length": 9,
       "value": "\"Haptics\""
     },
     {
       "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
+      "kind": "BooleanLiteral",
+      "offset": 571,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/tsyk5\/Unity\/MobileHapticFeedback\/native\/iOS\/MobileHapticFeedback\/MobileHapticFeedback\/MobileHapticFeedback.swift",
       "kind": "Dictionary",
-      "offset": 706,
+      "offset": 1220,
       "length": 3,
       "value": "[]"
     }

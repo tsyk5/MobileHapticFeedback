@@ -11,7 +11,7 @@ namespace tsyk5.MobileHapticFeedback
         [DllImport("__Internal")] private static extern void  MHF_StopCoreHaptics();
 
         [DllImport("__Internal")] private static extern void  MHF_PlayCoreImpact(float intensity, float sharpness, double durationSec);
-        [DllImport("__Internal")] private static extern void  MHF_PlayCorePattern(float[] durationsSec, float[] amplitudes, int count);
+        [DllImport("__Internal")] private static extern void  MHF_PlayCorePattern(float[] durationsSec, float[] amplitudes, float[] sharpnesses, int count);
 
         [DllImport("__Internal")] private static extern void  MHF_PlayUIKitImpact(int style);
         [DllImport("__Internal")] private static extern void  MHF_PlayUIKitSelection();
@@ -22,7 +22,7 @@ namespace tsyk5.MobileHapticFeedback
         private static void  MHF_StopCoreHaptics() {}
 
         private static void  MHF_PlayCoreImpact(float a,float b,double c){}
-        private static void  MHF_PlayCorePattern(float[] a,float[] b,int c){}
+        private static void  MHF_PlayCorePattern(float[] a,float[] b,float[] c,int d){}
 
         private static void  MHF_PlayUIKitImpact(int style) {}
         private static void  MHF_PlayUIKitSelection() {}
@@ -36,12 +36,13 @@ namespace tsyk5.MobileHapticFeedback
         public static void PlayCoreImpact(float intensity, float sharpness, double durationSec)
             => MHF_PlayCoreImpact(intensity, sharpness, durationSec);
 
-        public static void PlayCorePattern(float[] durationsSec, float[] amplitudes)
+        public static void PlayCorePattern(float[] durationsSec, float[] amplitudes, float[] sharpnesses)
         {
-            if (durationsSec == null || amplitudes == null) return;
-            if (durationsSec.Length == 0 || durationsSec.Length != amplitudes.Length) return;
+            if (durationsSec == null || amplitudes == null || sharpnesses == null) return;
+            if (durationsSec.Length == 0) return;
+            if (durationsSec.Length != amplitudes.Length || durationsSec.Length != sharpnesses.Length) return;
 
-            MHF_PlayCorePattern(durationsSec, amplitudes, durationsSec.Length);
+            MHF_PlayCorePattern(durationsSec, amplitudes, sharpnesses, durationsSec.Length);
         }
 
         public static void PlayUIKitImpact(ImpactStyle style) => MHF_PlayUIKitImpact((int)style);

@@ -10,6 +10,7 @@ namespace tsyk5.MobileHapticFeedback
         private static AndroidJavaClass _pluginClass;
         private static AndroidJavaObject _activity;
         private static bool? _hasVibrator;
+        private static bool? _supportsSharpness;
 
         private static AndroidJavaClass PluginClass => _pluginClass ??= new AndroidJavaClass(JavaClass);
 
@@ -31,6 +32,11 @@ namespace tsyk5.MobileHapticFeedback
             return _hasVibrator ??= PluginClass.CallStatic<bool>("hasVibrator", Activity);
         }
 
+        public static bool SupportsSharpness()
+        {
+            return _supportsSharpness ??= PluginClass.CallStatic<bool>("supportsSharpness", Activity);
+        }
+
         public static void Stop()
         {
             PluginClass.CallStatic("stop", Activity);
@@ -41,9 +47,9 @@ namespace tsyk5.MobileHapticFeedback
             PluginClass.CallStatic("playImpact", Activity, intensity, sharpness, durationSec);
         }
 
-        public static void PlayPattern(float[] durationsSec, float[] amplitudes)
+        public static void PlayPattern(float[] durationsSec, float[] amplitudes, float[] sharpnesses)
         {
-            PluginClass.CallStatic("playPattern", Activity, durationsSec, amplitudes);
+            PluginClass.CallStatic("playPattern", Activity, durationsSec, amplitudes, sharpnesses);
         }
 
         public static void PlaySelection()

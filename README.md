@@ -15,6 +15,7 @@ and waveform-based haptic patterns with a consistent programming model across pl
   - UIKit-style feedback (Impact / Selection / Notification)
 - **Android**
   - VibrationEffect-based haptics (API 26+)
+  - Envelope-based impacts / patterns with sharpness control (Android 16+, supported devices)
 - **Unity**
   - Unified cross-platform API
   - Safe no-op behavior when haptics are unavailable or muted
@@ -24,7 +25,7 @@ and waveform-based haptic patterns with a consistent programming model across pl
 > the closest available vibration patterns supported by the platform.
 
 ## Supported Platforms
-- iOS 13+
+- iOS 15+
 - Android API 26+
 - Unity 6000.0 or later
 
@@ -37,7 +38,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 To install a specific version, append a tag:
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.4.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.5.0
 ```
 
 
@@ -64,28 +65,32 @@ MobileHapticFeedback.Stop();
 ```
 Parameters
 - `intensity` (0..1): Strength of the haptic.
-- `sharpness` (0..1): Crispness / sharp edge of the haptic (iOS only).
+- `sharpness` (0..1): Crispness / sharp edge of the haptic.
 - `durationSec` (sec): Duration of the haptic (clamped to 0.01-10s, see `MinDurationSec` / `MaxDurationSec`).
 
 > <b>⚠️ Note (Android)</b>: <br/>
-Android does not support the sharpness parameter.<br/>
-Changing this value does not affect vibration behavior.
+`sharpness` is honored only on Android 16+ devices that support envelope effects
+(`VibrationEffect.BasicEnvelopeBuilder`). On other devices the value is ignored.<br/>
+Check `MobileHapticFeedback.IsSharpnessSupported` at runtime to adapt your UI.
 
 ### Patterns API （ Waveform-style ）
 
 ```csharp
 MobileHapticFeedback.Prepare();
 
-// One PatternSegment = (durationSec, amplitude)
+// One PatternSegment = (durationSec, amplitude, sharpness = 0.5)
 MobileHapticFeedback.PlayPattern(
     new PatternSegment(0.6f, 0.1f),
-    new PatternSegment(0.15f, 0f)   // amplitude 0 = silence
+    new PatternSegment(0.15f, 0f),              // amplitude 0 = silence
+    new PatternSegment(0.2f, 0.8f, sharpness: 0.9f)
 );
 ```
 Parameters
 
 - `durationSec` (sec): Duration of the segment.
 - `amplitude` (0..1): Strength of the segment. `0` means silence, `1` means maximum strength.
+- `sharpness` (0..1, optional): Crispness of the segment. Defaults to `PatternSegment.DefaultSharpness` (0.5).
+  Honored where `IsSharpnessSupported` is true, ignored elsewhere.
 
 > `PlayPattern(float[] durationsSec, float[] amplitudes)` is deprecated since v0.4.0:
 > the parallel arrays could get out of sync and fail silently.
