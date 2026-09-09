@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.0 (unreleased)
+## 0.5.0
 - feat: Android 16+ envelope effects (`BasicEnvelopeBuilder`) for `PlayImpact` / `PlayPattern`, so `sharpness` is honored on supported devices
 - feat: add `MobileHapticFeedback.IsSharpnessSupported`
 - feat: `PatternSegment` gets an optional `sharpness` (default 0.5); iOS Core Haptics and Android 16+ envelope patterns use it per segment
