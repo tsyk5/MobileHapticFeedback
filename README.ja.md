@@ -14,6 +14,7 @@ UIKit スタイルの簡易フィードバックから、  パラメータ指定
   - UIKit 準拠のハプティック（Impact / Selection / Notification）
 - **Android**
   - VibrationEffect ベースのハプティック（API 26+）
+  - エンベロープベースのインパクト / パターン再生と sharpness 対応（Android 16 以上の対応端末）
 - **Unity**
   - プラットフォーム共通の統一 API
   - ハプティックが無効な場合でも安全に動作
@@ -63,12 +64,12 @@ MobileHapticFeedback.Stop();
 ```
 パラメータ
 - `intensity` (0..1): ハプティックの強度
-- `sharpness` (0..1): 鋭さ（iOS のみ）
+- `sharpness` (0..1): 鋭さ
 - `durationSec` (sec): 再生時間（0.01〜10秒にclamp。`MinDurationSec` / `MaxDurationSec` 参照）
 
 > ⚠️ 補足（Android）<br>
-> Android では sharpness はサポートされていません。<br>
-> 値を変更しても振動の挙動は変化しません。
+> `sharpness` が効くのは、エンベロープ効果（`VibrationEffect.BasicEnvelopeBuilder`）に対応した Android 16 以上の端末のみです。<br>
+> それ以外の端末では値は無視されます。実行時に `MobileHapticFeedback.IsSharpnessSupported` で判定できます。
 
 ### Patterns API（波形スタイル）
 

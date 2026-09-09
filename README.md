@@ -15,6 +15,7 @@ and waveform-based haptic patterns with a consistent programming model across pl
   - UIKit-style feedback (Impact / Selection / Notification)
 - **Android**
   - VibrationEffect-based haptics (API 26+)
+  - Envelope-based impacts / patterns with sharpness control (Android 16+, supported devices)
 - **Unity**
   - Unified cross-platform API
   - Safe no-op behavior when haptics are unavailable or muted
@@ -64,12 +65,13 @@ MobileHapticFeedback.Stop();
 ```
 Parameters
 - `intensity` (0..1): Strength of the haptic.
-- `sharpness` (0..1): Crispness / sharp edge of the haptic (iOS only).
+- `sharpness` (0..1): Crispness / sharp edge of the haptic.
 - `durationSec` (sec): Duration of the haptic (clamped to 0.01-10s, see `MinDurationSec` / `MaxDurationSec`).
 
 > <b>⚠️ Note (Android)</b>: <br/>
-Android does not support the sharpness parameter.<br/>
-Changing this value does not affect vibration behavior.
+`sharpness` is honored only on Android 16+ devices that support envelope effects
+(`VibrationEffect.BasicEnvelopeBuilder`). On other devices the value is ignored.<br/>
+Check `MobileHapticFeedback.IsSharpnessSupported` at runtime to adapt your UI.
 
 ### Patterns API （ Waveform-style ）
 

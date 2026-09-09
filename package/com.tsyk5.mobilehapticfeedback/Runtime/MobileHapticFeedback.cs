@@ -22,6 +22,25 @@ namespace tsyk5.MobileHapticFeedback
             }
         }
 
+        /// <summary>
+        /// True when the sharpness parameter of <see cref="PlayImpact(float, float, double)"/> is
+        /// honored by the device. iOS: Core Haptics. Android: envelope effects (Android 16+ on
+        /// supported hardware). When false, sharpness is silently ignored.
+        /// </summary>
+        public static bool IsSharpnessSupported
+        {
+            get
+            {
+#if UNITY_IOS && !UNITY_EDITOR
+                return IOSHapticFeedback.SupportsCoreHaptics;
+#elif UNITY_ANDROID && !UNITY_EDITOR
+                return AndroidHapticFeedback.SupportsSharpness();
+#else
+                return false;
+#endif
+            }
+        }
+
         public static void Prepare()
         {
 #if UNITY_IOS && !UNITY_EDITOR
@@ -48,7 +67,7 @@ namespace tsyk5.MobileHapticFeedback
 #if UNITY_IOS && !UNITY_EDITOR
             IOSHapticFeedback.PlayCoreImpact(intensity, sharpness, durationSec);
 #elif UNITY_ANDROID && !UNITY_EDITOR
-            // TODO: sharpness is not supported
+            // NOTE: sharpness is honored only on devices with envelope-effect support (see IsSharpnessSupported)
             AndroidHapticFeedback.PlayImpact(intensity, sharpness, durationSec);
 #else
             Debug.Log($"[Editor] PlayImpact({intensity:F2}, {sharpness:F2}, {durationSec:F2}s)");

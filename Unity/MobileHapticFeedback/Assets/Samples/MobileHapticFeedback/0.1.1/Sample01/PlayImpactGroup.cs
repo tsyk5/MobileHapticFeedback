@@ -51,10 +51,8 @@ namespace tsyk5.MobileHapticFeedback.Sample01
             _sharpnessSlider.onValueChanged.AddListener(_ => UpdateText());
             _durationSlider.onValueChanged.AddListener(_ => UpdateText());
             
-#if UNITY_ANDROID
-            // NOTE: sharpness is not supported on Android
-            _sharpnessSlider.interactable = false;
-#endif
+            // NOTE: sharpness is ignored on devices that cannot render it (e.g. Android < 16)
+            _sharpnessSlider.interactable = MobileHapticFeedback.IsSharpnessSupported;
 
             _playImpactButton.onClick.AddListener(OnPlayButtonClicked);
             _lightButton.onClick.AddListener(() => _vibrationExecutor.Vibrate(VibrationType.Light));

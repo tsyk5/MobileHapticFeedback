@@ -10,6 +10,7 @@ namespace tsyk5.MobileHapticFeedback
         private static AndroidJavaClass _pluginClass;
         private static AndroidJavaObject _activity;
         private static bool? _hasVibrator;
+        private static bool? _supportsSharpness;
 
         private static AndroidJavaClass PluginClass => _pluginClass ??= new AndroidJavaClass(JavaClass);
 
@@ -29,6 +30,11 @@ namespace tsyk5.MobileHapticFeedback
         public static bool HasVibrator()
         {
             return _hasVibrator ??= PluginClass.CallStatic<bool>("hasVibrator", Activity);
+        }
+
+        public static bool SupportsSharpness()
+        {
+            return _supportsSharpness ??= PluginClass.CallStatic<bool>("supportsSharpness", Activity);
         }
 
         public static void Stop()

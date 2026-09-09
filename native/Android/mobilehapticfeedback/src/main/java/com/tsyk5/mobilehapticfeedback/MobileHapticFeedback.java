@@ -1,10 +1,12 @@
 package com.tsyk5.mobilehapticfeedback;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.os.VibratorManager;
+import android.os.vibrator.VibratorEnvelopeEffectInfo;
 
 import java.util.Arrays;
 
@@ -15,6 +17,12 @@ public final class MobileHapticFeedback {
     // Keep in sync with MobileHapticFeedback.MinDurationSec / MaxDurationSec (C#)
     private static final long MIN_DURATION_MS = 10L;
     private static final long MAX_DURATION_MS = 10_000L;
+
+    // Keep in sync with the fixed sharpness used by playCorePattern (iOS)
+    private static final float PATTERN_SHARPNESS = 0.5f;
+
+    // Guaranteed minimum for devices that support envelope effects (API 36+)
+    private static final long DEFAULT_MIN_CONTROL_POINT_MS = 20L;
 
     // ImpactStyle
     public static final int IMPACT_LIGHT  = 0;
@@ -46,19 +54,34 @@ public final class MobileHapticFeedback {
         return v != null && v.hasVibrator();
     }
 
+    /**
+     * True when the device can render the sharpness parameter
+     * (Android 16+ envelope effects, see VibrationEffect.BasicEnvelopeBuilder).
+     */
+    public static boolean supportsSharpness(Context ctx) {
+        Vibrator v = getVibrator(ctx);
+        return v != null && v.hasVibrator() && supportsEnvelopeEffects(v);
+    }
+
     public static void stop(Context ctx) {
         Vibrator v = getVibrator(ctx);
         if (v == null) return;
         try { v.cancel(); } catch (Throwable ignored) {}
     }
 
-    // TODO: sharpness is not supported
+    // NOTE: sharpness is only honored on devices that support envelope effects (API 36+)
     public static void playImpact(Context ctx, float intensity, float sharpness, double durationSec) {
         Vibrator v = getVibrator(ctx);
         if (v == null || !v.hasVibrator()) return;
 
         float i = clamp01(intensity);
+        float s = clamp01(sharpness);
         long durationMs = clampLong((long) (durationSec * 1000.0), MIN_DURATION_MS, MAX_DURATION_MS);
+
+        if (supportsEnvelopeEffects(v)) {
+            playEnvelopeImpact(v, i, s, durationMs);
+            return;
+        }
 
         int amp = clampInt((int) (i * 255f), 1, 255);
 
@@ -85,10 +108,19 @@ public final class MobileHapticFeedback {
             timings[i] = clampLong(ms, 0L, MAX_DURATION_MS);
         }
 
-        int[] amps = new int[amplitudes.length];
+        float[] amps01 = new float[amplitudes.length];
         for (int i = 0; i < amplitudes.length; i++) {
-            int a = (int) (clamp01(amplitudes[i]) * 255f);
-            amps[i] = clampInt(a, 0, 255);
+            amps01[i] = clamp01(amplitudes[i]);
+        }
+
+        if (supportsEnvelopeEffects(v)) {
+            playEnvelopePattern(v, timings, amps01, PATTERN_SHARPNESS);
+            return;
+        }
+
+        int[] amps = new int[amps01.length];
+        for (int i = 0; i < amps01.length; i++) {
+            amps[i] = clampInt((int) (amps01[i] * 255f), 0, 255);
         }
 
         vibrateWaveform(v, timings, amps);
@@ -180,6 +212,89 @@ public final class MobileHapticFeedback {
         vibrateWaveform(v, timings, amps);
     }
 
+    // ---- Envelope effects (API 36+) ----------------------------------------------------------
+
+    private static boolean supportsEnvelopeEffects(Vibrator v) {
+        if (Build.VERSION.SDK_INT < 36) return false;
+        try {
+            return v.areEnvelopeEffectsSupported();
+        } catch (Throwable ignored) {
+            return false;
+        }
+    }
+
+    @TargetApi(36)
+    private static long minControlPointMs(Vibrator v) {
+        long min = DEFAULT_MIN_CONTROL_POINT_MS;
+        try {
+            VibratorEnvelopeEffectInfo info = v.getEnvelopeEffectInfo();
+            if (info != null) min = info.getMinControlPointDurationMillis();
+        } catch (Throwable ignored) {}
+        return Math.max(1L, min);
+    }
+
+    // Single continuous event: ramp up as fast as the hardware allows, hold, ramp down.
+    // Impacts shorter than two control points are stretched to that minimum (typically 40ms).
+    @TargetApi(36)
+    private static void playEnvelopeImpact(Vibrator v, float intensity, float sharpness, long durationMs) {
+        long min = minControlPointMs(v);
+        long hold = durationMs - 2 * min;
+
+        VibrationEffect.BasicEnvelopeBuilder b = new VibrationEffect.BasicEnvelopeBuilder()
+                .setInitialSharpness(sharpness)
+                .addControlPoint(intensity, sharpness, min);
+        if (hold > 0) {
+            b.addControlPoint(intensity, sharpness, hold);
+        }
+        b.addControlPoint(0f, sharpness, min);
+
+        v.vibrate(b.build());
+    }
+
+    // Each segment becomes "transition to the target amplitude as fast as possible, then hold".
+    // The transition is taken out of the segment's own duration so the overall timing is preserved.
+    // Segments shorter than the minimum control-point duration are stretched to it.
+    @TargetApi(36)
+    private static void playEnvelopePattern(Vibrator v, long[] timings, float[] amps01, float sharpness) {
+        long min = minControlPointMs(v);
+
+        VibrationEffect.BasicEnvelopeBuilder b = new VibrationEffect.BasicEnvelopeBuilder()
+                .setInitialSharpness(sharpness);
+
+        int points = 0;
+        float lastIntensity = 0f;
+
+        for (int i = 0; i < timings.length; i++) {
+            long t = timings[i];
+            float a = amps01[i];
+            if (t <= 0) continue;
+
+            if (a > 0f) {
+                b.addControlPoint(a, sharpness, min);
+                points++;
+                if (t > min) {
+                    b.addControlPoint(a, sharpness, t - min);
+                    points++;
+                }
+            } else {
+                b.addControlPoint(0f, sharpness, Math.max(t, min));
+                points++;
+            }
+            lastIntensity = a;
+        }
+
+        if (points == 0) return;
+
+        // Envelope effects must end at zero intensity
+        if (lastIntensity > 0f) {
+            b.addControlPoint(0f, sharpness, min);
+        }
+
+        v.vibrate(b.build());
+    }
+
+    // ---- Waveform fallback -------------------------------------------------------------------
+
     private static void vibrateWaveform(Vibrator v, long[] timings, int[] amps) {
         int noRepeat = -1;
 
@@ -252,4 +367,3 @@ public final class MobileHapticFeedback {
         return Math.max(min, Math.min(max, v));
     }
 }
-
