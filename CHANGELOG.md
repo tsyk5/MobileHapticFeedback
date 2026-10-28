@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5.1
 - chore: sample project upgraded to Unity 6000.3.25f1 (Unity 6.3). The package itself still requires 6000.0+
 
 ## 0.5.0
