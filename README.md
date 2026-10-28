@@ -27,7 +27,7 @@ and waveform-based haptic patterns with a consistent programming model across pl
 ## Supported Platforms
 - iOS 15+
 - Android API 26+
-- Unity 6000.0 or later
+- Unity 6000.0 or later, including 6000.3
 
 ## Installation ( Unity Package Manager )
 

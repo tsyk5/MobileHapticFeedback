@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- chore: sample project upgraded to Unity 6000.3.25f1 (Unity 6.3). The package itself still requires 6000.0+
+
 ## 0.5.0
 - feat: Android 16+ envelope effects (`BasicEnvelopeBuilder`) for `PlayImpact` / `PlayPattern`, so `sharpness` is honored on supported devices
 - feat: add `MobileHapticFeedback.IsSharpnessSupported`
