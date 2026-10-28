@@ -27,7 +27,7 @@ and waveform-based haptic patterns with a consistent programming model across pl
 ## Supported Platforms
 - iOS 15+
 - Android API 26+
-- Unity 6000.0 or later
+- Unity 6000.0 or later, including 6000.3
 
 ## Installation ( Unity Package Manager )
 
@@ -38,7 +38,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 To install a specific version, append a tag:
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.5.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.5.1
 ```
 
 

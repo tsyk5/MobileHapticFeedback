@@ -27,7 +27,7 @@ UIKit スタイルの簡易フィードバックから、  パラメータ指定
 
 - iOS 15 以上
 - Android API 26 以上
-- Unity 6000.0 以上
+- Unity 6000.0 以上（6000.3 対応）
 
 ## インストール（Unity Package Manager）
 
@@ -38,7 +38,7 @@ https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobileh
 
 特定バージョンを指定する場合はタグを付与してください。
 ```
-https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.5.0
+https://github.com/tsyk5/MobileHapticFeedback.git?path=package/com.tsyk5.mobilehapticfeedback#v0.5.1
 ```
 
 ## クイックスタート
